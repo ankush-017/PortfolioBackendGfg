@@ -7,15 +7,15 @@ app.use(cors());
 
 app.get("/gfg/:username", async (req, res) => {
   const username = req.params.username;
-  const apiUrl = "https://geeks-for-geeks-api.vercel.app/${username}";
+  const apiUrl = `https://geeks-for-geeks-api.vercel.app/${username}`;
 
   try {
     const response = await axios.get(apiUrl);
     res.json(response.data);
   } catch (error) {
+    console.error("Error fetching data from GFG API:", error.message);
     res.status(500).json({ error: "Failed to fetch data" });
   }
 });
-
 
 app.listen(8080, () => console.log("Server running on port 8080"));
